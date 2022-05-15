@@ -56,7 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }).toList();
   }
-
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
   void _addNewTransaction(
       String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
@@ -65,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
       date: chosenDate,
       id: DateTime.now().toString(),
     );
-
+    
     setState(() {
       _userTransactions.add(newTx);
     });
   }
-
+  
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -83,13 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
-
-  void _deleteTransaction(String id) {
-    setState(() {
-      _userTransactions.removeWhere((tx) => tx.id == id);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -7,11 +7,9 @@ class TransactionList extends StatelessWidget {
   final Function deleteTx;
 
   TransactionList(this.transactions, this.deleteTx);
-
   String Capitalize(String word){
     return "${word[0].toUpperCase()}${word.substring(1)}";
   }
-  
   @override
   Widget build(BuildContext context) {
     return Container(
