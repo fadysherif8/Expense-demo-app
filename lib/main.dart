@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './widgets/chart.dart';
 import './models/transaction.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -56,11 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }).toList();
   }
+
   void _deleteTransaction(String id) {
     setState(() {
       _userTransactions.removeWhere((tx) => tx.id == id);
     });
   }
+
   void _addNewTransaction(
       String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
@@ -69,12 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
       date: chosenDate,
       id: DateTime.now().toString(),
     );
-    
+
     setState(() {
       _userTransactions.add(newTx);
     });
   }
-  
+
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -87,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
