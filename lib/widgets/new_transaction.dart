@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
-
+  
   NewTransaction(this.addTx);
 
   @override
@@ -57,7 +57,8 @@ class _NewTransactionState extends State<NewTransaction> {
     return Card(
       elevation: 5,
       child: Container(
-        padding: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height*0.35,
+        padding: EdgeInsets.only(bottom:10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
