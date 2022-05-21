@@ -86,12 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: ctx,
       builder: (_) {
-        return GestureDetector(
-          onTap: () {},
+        return Padding(
           child: NewTransaction(_addNewTransaction),
-          behavior: HitTestBehavior.opaque,
+          padding: EdgeInsets.only(
+            top: 15,
+            bottom: MediaQuery.of(ctx).viewInsets.bottom + 15),
         );
       },
     );
